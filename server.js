@@ -27,17 +27,18 @@ const rappers = {
 }
 
 
-app.get('/api/', (request, response)=>{
+app.get('/', (request, response)=>{
     response.sendFile(__dirname + '/index.html')
 })
 
-app.get('/api/:rapperName', (request,response)=>{
-    const rappersName = request.params.rapperName.toLowerCase()
+app.get('/api/:name', (request,response)=>{
+    const rappersName = request.params.name.toLowerCase()
     if(rappers[rappersName]){
         response.json(rappers[rappersName])
-    }else{
+     }else{
         response.json(rappers['dylan'])
-    }
+     }
+    response.json(rappers)
 })
 
 app.listen(process.env.PORT || PORT, ()=>{
